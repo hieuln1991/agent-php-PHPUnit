@@ -1,0 +1,24 @@
+{
+  "name": "agent_php_phpUnit",
+  "description": "PhpUnit agent for EPAM Report Portal",
+  "keywords": [
+    "Report",
+    "Reporting",
+    "Report Portal",
+    "phpUnit"
+  ],
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Mikalai Kabzar",
+      "email": "Mikalai_Kabzar@epam.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require-dev": {
+    	"phpunit/phpunit": "7.3.0",
+	"reportportal/basic" : "1.0.x-dev"
+	
+  }
+}
