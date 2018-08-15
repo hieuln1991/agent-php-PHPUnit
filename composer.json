@@ -1,22 +1,21 @@
 {
-  "name": "reportportal/phpunit",
-  "description": "PhpUnit agent for EPAM Report Portal",
-  "keywords": [
-    "Report",
-    "Reporting",
-    "Report Portal",
-    "phpUnit"
-  ],
-  "type": "project",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Mikalai Kabzar",
-      "email": "Mikalai_Kabzar@epam.com"
-    }
-  ],
-  "minimum-stability": "dev",
-  "require-dev": {
+  	"name": "reportportal/phpunit",
+	"type" : "library",
+	"description" : "Basic classes for Report Portal collaboration",
+	"keywords" : [
+		"Report",
+		"Reporting",
+		"Report Portal"
+	],
+	"homepage" : "https://github.com/Mikalai-Kabzar/client-php",
+	"license" : "MIT",
+	"authors" : [{
+			"name" : "Kabzar Mikalai",
+			"email" : "loki.engine@mail.ru",
+			"role" : "Developer"
+		}
+	],
+  	"require-dev": {
     	"phpunit/phpunit": "7.3.0",
 	"reportportal/basic" : "1.0.x-dev"
 	
