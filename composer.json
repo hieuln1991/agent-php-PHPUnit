@@ -1,5 +1,5 @@
 {
-  "name": "agent_php_phpUnit",
+  "name": "reportportal/phpunit",
   "description": "PhpUnit agent for EPAM Report Portal",
   "keywords": [
     "Report",
