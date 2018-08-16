@@ -43,7 +43,7 @@ Use as an example: https://github.com/Mikalai-Kabzar/phpUnit-test-framework/blob
     
 Use as an example: https://github.com/Mikalai-Kabzar/phpUnit-test-framework/blob/master/phpunit.xml
 
-#### 3) Fill in <string> ~ ~ ~ </string> lines with data of your own Report Portal server.
+#### 3) Fill in ```<string> ~ ~ ~ </string> ``` lines with data of your own Report Portal server.
 
 #### 4) Run command "composer update" to get dependencies.
 
