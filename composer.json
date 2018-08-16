@@ -15,7 +15,7 @@
 			"role" : "Developer"
 		}
 	],
-  	"require-dev": {
+  	"require": {
     	"phpunit/phpunit": "7.3.0",
 	"reportportal/basic" : "1.0.x-dev"
   }
