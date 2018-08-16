@@ -3,10 +3,8 @@
 PHPUnit agent for EPAM Report Portal
 
 ## How to use.
--------------
 
 Use as an example: https://github.com/Mikalai-Kabzar/phpUnit-test-framework
-
 
 ### Steps:
 
