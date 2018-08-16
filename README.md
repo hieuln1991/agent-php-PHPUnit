@@ -13,7 +13,7 @@ Steps:
   },
   
 2) Update phpunit.xml file with listener configuration.
-
+"
     <listeners>
         <listener class="agentPHPUnit" file="vendor/reportportal/phpunit/src/agentPHPUnit.php">
             <arguments>
@@ -26,7 +26,7 @@ Steps:
             </arguments>
         </listener>
     </listeners> 
-
+"
 3) Fill in <string> ~ ~ ~ </string> lines with data of your own Report Portal server.
 
 4) Run command "composer update" to get dependencies.
