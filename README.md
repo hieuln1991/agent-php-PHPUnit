@@ -35,7 +35,7 @@ Use as an example: https://github.com/Mikalai-Kabzar/phpUnit-test-framework/blob
         </listener>
     </listeners> 
 ```
-    - 1 - API tocken.
+    - 1 - UUID.
     - 2 - Report Portal server URL.
     - 3 - Project name.
     - 4 - Time Zone.
