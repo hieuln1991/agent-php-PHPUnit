@@ -1,4 +1,4 @@
-# ReportPortal agent for PHPUnit
+# ReportPortal agent for phpUnit
 
 PHPUnit agent for EPAM Report Portal
 
