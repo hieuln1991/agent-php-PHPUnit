@@ -1,7 +1,7 @@
 {
   	"name": "reportportal/phpunit",
 	"type" : "library",
-	"description" : "Basic classes for Report Portal collaboration",
+	"description" : "Basic classes for Report Portal collaboration with PHPUnit",
 	"keywords" : [
 		"Report",
 		"Reporting",
