@@ -1,14 +1,15 @@
-ReportPortal
+# ReportPortal
 ================
 PHPUnit agent for EPAM Report Portal
 
-How to use.
+## How to use.
 -------------
 
 Use as an example: https://github.com/Mikalai-Kabzar/phpUnit-test-framework
 
 
-Steps:
+### Steps:
+
 1) Add dependency to your composer.json file.
 ```
   "minimum-stability": "dev",
