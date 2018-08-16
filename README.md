@@ -16,9 +16,8 @@ Steps:
     "reportportal/phpunit" : "*"
   },
 ```
+Use as an example: https://github.com/Mikalai-Kabzar/phpUnit-test-framework/blob/master/composer.json
 
-#### https://github.com/Mikalai-Kabzar/phpUnit-test-framework/blob/master/composer.json
--------------
   
 2) Update phpunit.xml file with listener configuration.
 
@@ -36,11 +35,8 @@ Steps:
         </listener>
     </listeners> 
 ```
-
-#### https://github.com/Mikalai-Kabzar/phpUnit-test-framework/blob/master/phpunit.xml
--------------
+Use as an example: https://github.com/Mikalai-Kabzar/phpUnit-test-framework/blob/master/phpunit.xml
 
 3) Fill in <string> ~ ~ ~ </string> lines with data of your own Report Portal server.
 
 4) Run command "composer update" to get dependencies.
-
