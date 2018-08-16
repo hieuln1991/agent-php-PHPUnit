@@ -35,6 +35,13 @@ Use as an example: https://github.com/Mikalai-Kabzar/phpUnit-test-framework/blob
         </listener>
     </listeners> 
 ```
+    - 1 - API tocken.
+    - 2 - Report Portal server URL.
+    - 3 - Project name.
+    - 4 - Time Zone.
+    - 5 - Test Launch name.
+    - 6 - Test launch description.
+    
 Use as an example: https://github.com/Mikalai-Kabzar/phpUnit-test-framework/blob/master/phpunit.xml
 
 3) Fill in <string> ~ ~ ~ </string> lines with data of your own Report Portal server.
