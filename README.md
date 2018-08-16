@@ -1,20 +1,28 @@
-# ReportPortal
+ReportPortal
+================
 PHPUnit agent for EPAM Report Portal
 
 How to use.
-Use as an example https://github.com/Mikalai-Kabzar/phpUnit-test-framework
+-------------
+
+Use as an example: https://github.com/Mikalai-Kabzar/phpUnit-test-framework
+
 
 Steps:
 1) Add dependency to your composer.json file.
-
+```
   "minimum-stability": "dev",
   "require-dev": {
     "reportportal/phpunit" : "*"
   },
-  https://github.com/Mikalai-Kabzar/phpUnit-test-framework/blob/master/composer.json
+```
+
+#### https://github.com/Mikalai-Kabzar/phpUnit-test-framework/blob/master/composer.json
+-------------
   
 2) Update phpunit.xml file with listener configuration.
-"
+
+```
     <listeners>
         <listener class="agentPHPUnit" file="vendor/reportportal/phpunit/src/agentPHPUnit.php">
             <arguments>
@@ -27,8 +35,10 @@ Steps:
             </arguments>
         </listener>
     </listeners> 
-"
-https://github.com/Mikalai-Kabzar/phpUnit-test-framework/blob/master/phpunit.xml
+```
+
+#### https://github.com/Mikalai-Kabzar/phpUnit-test-framework/blob/master/phpunit.xml
+-------------
 
 3) Fill in <string> ~ ~ ~ </string> lines with data of your own Report Portal server.
 
