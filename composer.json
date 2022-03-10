@@ -1,5 +1,5 @@
 {
-  	"name": "CDJojn/reportportal-phpunit",
+  	"name": "cdjojn/reportportal-phpunit",
 	"type" : "library",
 	"description" : "Basic classes for Report Portal collaboration with PHPUnit",
 	"keywords" : [
