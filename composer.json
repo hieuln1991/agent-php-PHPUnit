@@ -1,5 +1,5 @@
 {
-  	"name": "reportportal/phpunit",
+  	"name": "CDJojn/reportportal-phpunit",
 	"type" : "library",
 	"description" : "Basic classes for Report Portal collaboration with PHPUnit",
 	"keywords" : [
@@ -17,7 +17,7 @@
 		}
 	],
   	"require": {
-    	"phpunit/phpunit": "7.3.0",
+    	"phpunit/phpunit": "^9.5.0",
 	"reportportal/basic" : "1.0.x-dev"
   }
 }
