@@ -124,11 +124,11 @@ class agentPHPUnit implements Framework\TestListener
 
     /**
      * @param Framework\Test $test
-     * @param Framework\AssertionFailedError $e
+     * @param Framework\Exception $e
      * @param $logLevelsEnum
      * @param $testItemID
      */
-    private function AddLogMessages(PHPUnit\Framework\Test $test, PHPUnit\Framework\AssertionFailedError $e, $logLevelsEnum, $testItemID)
+    private function AddLogMessages(PHPUnit\Framework\Test $test, PHPUnit\Framework\Exception $e, $logLevelsEnum, $testItemID)
     {
         $className = get_class($test);
         $traceArray = $e->getTrace();
