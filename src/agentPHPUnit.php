@@ -113,7 +113,7 @@ class agentPHPUnit implements Framework\TestListener
      */
     private function addSetOfLogMessages(PHPUnit\Framework\Test $test, PHPUnit\Framework\Exception $e, $logLevelsEnum, $testItemID)
     {
-        $errorMessage = $e->toString();
+        $errorMessage = $e->__toString();
         self::$httpService->addLogMessage($testItemID, $errorMessage, $logLevelsEnum);
 
         $this->AddLogMessages($test, $e, $logLevelsEnum, $testItemID);
