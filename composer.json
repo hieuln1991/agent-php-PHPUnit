@@ -1,5 +1,5 @@
 {
-  	"name": "reportportal/phpunit",
+  	"name": "currys-co-uk/reportportal-phpunit",
 	"type" : "library",
 	"description" : "Basic classes for Report Portal collaboration with PHPUnit",
 	"keywords" : [
@@ -8,7 +8,7 @@
 		"PHPUnit",
 		"Report Portal"
 	],
-	"homepage" : "https://github.com/Mikalai-Kabzar/client-php",
+	"homepage" : "https://github.com/currys-co-uk/agent-php-PHPUnit",
 	"license" : "MIT",
 	"authors" : [{
 			"name" : "Kabzar Mikalai",
@@ -17,7 +17,7 @@
 		}
 	],
   	"require": {
-    	"phpunit/phpunit": "7.3.0",
-	"reportportal/basic" : "1.0.x-dev"
+    	"phpunit/phpunit": "^9.5.0",
+		"reportportal/basic" : "1.0.x-dev"
   }
 }
