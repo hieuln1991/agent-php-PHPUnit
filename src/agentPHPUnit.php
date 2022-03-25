@@ -12,6 +12,8 @@ use ReportPortalBasic\Enum\LogLevelsEnum as LogLevelsEnum;
 use ReportPortalBasic\Service\ReportPortalHTTPService;
 use GuzzleHttp\Psr7\Response as Response;
 
+include "enum/PsrLogLevelsEnum.php";
+
 class agentPHPUnit implements Framework\TestListener
 {
     protected $tests = array();
@@ -87,7 +89,7 @@ class agentPHPUnit implements Framework\TestListener
         } else if ($status === PHPUnit\Runner\BaseTestRunner::STATUS_INCOMPLETE) {
             $statusResult = ItemStatusesEnum::STOPPED;
         } else if ($status === PHPUnit\Runner\BaseTestRunner::STATUS_ERROR) {
-            $statusResult = ItemStatusesEnum::CANCELLED;
+            $statusResult = ItemStatusesEnum::FAILED;
         } else {
             $statusResult = ItemStatusesEnum::SKIPPED;
         }
@@ -113,13 +115,57 @@ class agentPHPUnit implements Framework\TestListener
      */
     private function addSetOfLogMessages(PHPUnit\Framework\Test $test, PHPUnit\Framework\Exception $e, $logLevelsEnum, $testItemID)
     {
+        if ($test->loggedMessages) {
+            $test->loggedMessages = $this->sendLoggedMessages($test->loggedMessages, $testItemID);
+        }    
+        
         $errorMessage = $e->__toString();
-        self::$httpService->addLogMessage($testItemID, $errorMessage, $logLevelsEnum);
+        if (isset($test->screenShotFilePath)) {
+            $screenshotContent = $this->getScreenShot($test->screenShotFilePath);
+            self::$httpService->addLogMessageWithPicture($testItemID, $errorMessage, $logLevelsEnum, $screenshotContent, "png");
+        } else {
+            self::$httpService->addLogMessage($testItemID, $errorMessage, $logLevelsEnum);
+        }
 
         $this->AddLogMessages($test, $e, $logLevelsEnum, $testItemID);
 
         $trace = $e->getTraceAsString();
         self::$httpService->addLogMessage($testItemID, $trace, $logLevelsEnum);
+    }
+
+    /**
+     * Get screenshot binary data
+     *
+     * @param string $screenShotFilePath
+     * @return string
+     */
+    private function getScreenShot(string $screenShotFilePath): string
+    {
+        $handle = fopen($screenShotFilePath, "rb");
+        $contents = fread($handle, filesize($screenShotFilePath));
+        fclose($handle);
+        return $contents;
+    }
+
+    /**
+     * Send additional logger messages from TestCase
+     *
+     * @param array $loggedMessages
+     * @param string $testItemID
+     * @return array
+     */
+    private function sendLoggedMessages(array $loggedMessages, string $testItemID): array
+    {
+        foreach ($loggedMessages as &$message) {
+            if ($message["sent"] === false) {
+                $logLevel = PsrLogLevelsEnum::covertLevelFromPsrToReportPortal($message["level_name"]);
+                $date = date_format($message["datetime"], "Y/m/d H:i:s");
+                $context = $message["context"] ? json_encode($message["context"]) : "";
+                self::$httpService->addLogMessage($testItemID, $date . " " . $message["message"] . " " . $context, $logLevel);
+                $message["sent"] = true;
+            }
+        }
+        return $loggedMessages;
     }
 
     /**
@@ -177,6 +223,19 @@ class agentPHPUnit implements Framework\TestListener
     }
 
     /**
+     * Check that response ended with 200 state
+     *
+     * @param Response $HTTPResponse
+     */
+    private static function checkResponse(Response $HTTPResponse)
+    {
+        $statusCode = $HTTPResponse->getStatusCode();
+        if ($statusCode !== 200 && $statusCode !== 201) {
+            throw new Exception("Connection to ReportPortal failed with: [" . $statusCode . "] " . $HTTPResponse->getReasonPhrase());
+        }
+    }
+
+    /**
      * Is a suite without name
      *
      * @param Framework\TestSuite $suite
@@ -227,6 +286,10 @@ class agentPHPUnit implements Framework\TestListener
      */
     public function endTest(\PHPUnit\Framework\Test $test, float $time): void
     {
+        //sending logged messages from Passed tests 
+        if ($test->loggedMessages) {
+            $test->loggedMessages = $this->sendLoggedMessages($test->loggedMessages, $this->testItemID);
+        }    
         $testStatus = $this->getTestStatus($test);
         self::$httpService->finishItem($this->testItemID, $testStatus, $time . ' seconds');
     }
@@ -240,6 +303,7 @@ class agentPHPUnit implements Framework\TestListener
         $this->testName = $test->getName();
         $this->testDescription = '';
         $response = self::$httpService->startChildItem($this->classItemID, $this->testDescription, $this->testName, ItemTypesEnum::TEST, []);
+        $this->checkResponse($response);
         $this->testItemID = self::getID($response);
     }
 
@@ -255,6 +319,7 @@ class agentPHPUnit implements Framework\TestListener
             if (self::$suiteCounter == 1) {
                 $suiteName = $suite->getName();
                 $response = self::$httpService->createRootItem($suiteName, '', []);
+                $this->checkResponse($response);
                 $this->rootItemID = self::getID($response);
             } elseif (self::$suiteCounter >1) {
                 $className = $suite->getName();
@@ -262,7 +327,9 @@ class agentPHPUnit implements Framework\TestListener
                 $this->classDescription = '';
                 if (self::$suiteCounter == 2){
                     $response = self::$httpService->startChildItem($this->rootItemID, $this->classDescription, $this->className, ItemTypesEnum::SUITE, []);
+                    $this->checkResponse($response);
                     $this->classItemID = self::getID($response);
+                    self::$httpService->setStepItemID($this->classItemID);
                 }
             }
         }
