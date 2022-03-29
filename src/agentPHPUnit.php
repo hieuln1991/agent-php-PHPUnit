@@ -115,12 +115,12 @@ class agentPHPUnit implements Framework\TestListener
      */
     private function addSetOfLogMessages(PHPUnit\Framework\Test $test, PHPUnit\Framework\Exception $e, $logLevelsEnum, $testItemID)
     {
-        if ($test->loggedMessages) {
+        if (isset($test->loggedMessages) && $test->loggedMessages) {
             $test->loggedMessages = $this->sendLoggedMessages($test->loggedMessages, $testItemID);
         }    
         
         $errorMessage = $e->__toString();
-        if (isset($test->screenShotFilePath)) {
+        if (isset($test->screenShotFilePath) && $test->screenShotFilePath) {
             $screenshotContent = $this->getScreenShot($test->screenShotFilePath);
             self::$httpService->addLogMessageWithPicture($testItemID, $errorMessage, $logLevelsEnum, $screenshotContent, "png");
         } else {
@@ -287,7 +287,7 @@ class agentPHPUnit implements Framework\TestListener
     public function endTest(\PHPUnit\Framework\Test $test, float $time): void
     {
         //sending logged messages from Passed tests 
-        if ($test->loggedMessages) {
+        if (isset($test->loggedMessages) && $test->loggedMessages) {
             $test->loggedMessages = $this->sendLoggedMessages($test->loggedMessages, $this->testItemID);
         }    
         $testStatus = $this->getTestStatus($test);
