@@ -22,6 +22,14 @@
                 <string>.000+00:00</string>
                 <string>test launch name !!!</string>
                 <string>test launch description !!!</string>
+                <array>
+                    <element key="0">
+                        <string>ENV_NAME</string>
+                    </element>
+                    <element key="1">
+                        <string>SITE</string>
+                    </element>
+                </array>
             </arguments>
         </listener>
     </listeners>

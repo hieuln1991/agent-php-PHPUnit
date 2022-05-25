@@ -48,15 +48,16 @@ class agentPHPUnit implements Framework\TestListener
      * @param $timeZone
      * @param $launchName
      * @param $launchDescription
+     * @param $envVariables
      */
-    public function __construct($UUID, $host, $projectName, $timeZone, $launchName, $launchDescription)
+    public function __construct($UUID, $host, $projectName, $timeZone, $launchName, $launchDescription, $envVariables)
     {
         $this->UUID = $UUID;
         $this->host = $host;
         $this->projectName = $projectName;
         $this->timeZone = $timeZone;
         $this->launchName = $launchName;
-        $this->launchDescription = $launchDescription;
+        $this->launchDescription = $this->getLaunchDescriptionFormatted($launchDescription, $envVariables);
 
         $this->configureClient();
         self::$httpService->launchTestRun($this->launchName, $this->launchDescription, ReportPortalHTTPService::DEFAULT_LAUNCH_MODE, []);
@@ -70,6 +71,40 @@ class agentPHPUnit implements Framework\TestListener
         $status = self::getStatusByBool(true);
         $HTTPResult = self::$httpService->finishTestRun($status);
         self::$httpService->finishAll($HTTPResult);
+    }
+
+    /**
+     * @param $launchDescription
+     * @param $envVariables
+     * @return string
+     */
+    private function getLaunchDescriptionFormatted($launchDescription, $envVariables)
+    {
+        $formattedEnvs = $this->getVariablesFormatted($envVariables);
+        if (empty($launchDescription)) {
+            return $formattedEnvs;
+        } elseif (empty($formattedEnvs)) {
+            return $launchDescription;
+        } else {
+            return $launchDescription . ", " . $formattedEnvs;
+        }
+    }
+
+    /**
+     * @param $envVariables
+     * @return string
+     */
+    private function getVariablesFormatted($envVariables)
+    {
+        $output = "";
+        if (is_array($envVariables) && !empty($envVariables)) {
+            foreach ($envVariables as $variable) {
+                $output = $output . "$variable: " . getenv($variable) . ", ";
+            }
+            $output = rtrim($output, ", ");
+            return "[$output]";
+        }
+        return $output;
     }
 
     /**
