@@ -30,6 +30,14 @@ Use as an example: https://github.com/Mikalai-Kabzar/phpUnit-test-framework/blob
                 <string>.000+00:00</string>
                 <string>test launch name !!!</string>
                 <string>test launch description !!!</string>
+                <array>
+                    <element>
+                        <string>Name of env variable #1</string>
+                    </element>
+                    <element>
+                        <string>Name of env variable #2</string>
+                    </element>
+                </array>
             </arguments>
         </listener>
     </listeners> 
@@ -42,6 +50,7 @@ agentPHPUnit listener's variables description.
     - 4 - Time Zone.
     - 5 - Test Launch name.
     - 6 - Test launch description.
+    - 7 - Array of environment variables names
     
 Use as an example: https://github.com/Mikalai-Kabzar/phpUnit-test-framework/blob/master/phpunit.xml
 
