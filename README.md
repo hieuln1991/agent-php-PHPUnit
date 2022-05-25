@@ -31,10 +31,10 @@ Use as an example: https://github.com/Mikalai-Kabzar/phpUnit-test-framework/blob
                 <string>test launch name !!!</string>
                 <string>test launch description !!!</string>
                 <array>
-                    <element>
+                    <element key="0">
                         <string>Name of env variable #1</string>
                     </element>
-                    <element>
+                    <element key="1">
                         <string>Name of env variable #2</string>
                     </element>
                 </array>
