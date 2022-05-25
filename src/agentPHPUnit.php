@@ -80,11 +80,14 @@ class agentPHPUnit implements Framework\TestListener
      */
     private function getLaunchDescriptionFormatted($launchDescription, $envVariables)
     {
+        $formattedEnvs = $this->getVariablesFormatted($envVariables);
         if (empty($launchDescription)) {
-            return $this->getVariablesFormatted($envVariables);
+            return $formattedEnvs;
+        } elseif (empty($formattedEnvs)) {
+            return $launchDescription;
+        } else {
+            return $launchDescription . ", " . $formattedEnvs;
         }
-
-        return $launchDescription . ", " . $this->getVariablesFormatted($envVariables);
     }
 
     /**
