@@ -50,7 +50,7 @@ agentPHPUnit listener's variables description.
     - 4 - Time Zone.
     - 5 - Test Launch name.
     - 6 - Test launch description.
-    - 7 - Array of environment variables names
+    - 7 - Array of environment variables names (optional)
     
 Use as an example: https://github.com/Mikalai-Kabzar/phpUnit-test-framework/blob/master/phpunit.xml
 

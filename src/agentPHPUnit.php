@@ -50,7 +50,7 @@ class agentPHPUnit implements Framework\TestListener
      * @param $launchDescription
      * @param $envVariables
      */
-    public function __construct($UUID, $host, $projectName, $timeZone, $launchName, $launchDescription, $envVariables)
+    public function __construct($UUID, $host, $projectName, $timeZone, $launchName, $launchDescription, $envVariables = "")
     {
         $this->UUID = $UUID;
         $this->host = $host;
