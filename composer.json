@@ -1,5 +1,5 @@
 {
-  	"name": "currys-co-uk/reportportal-phpunit",
+  	"name": "soundone/reportportal-phpunit",
 	"type" : "library",
 	"description" : "Basic classes for Report Portal collaboration with PHPUnit",
 	"keywords" : [
@@ -8,7 +8,7 @@
 		"PHPUnit",
 		"Report Portal"
 	],
-	"homepage" : "https://github.com/currys-co-uk/agent-php-PHPUnit",
+	"homepage" : "https://github.com/hieuln1991/agent-php-PHPUnit",
 	"license" : "MIT",
 	"authors" : [{
 			"name" : "Kabzar Mikalai",
